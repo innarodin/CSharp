@@ -12,11 +12,6 @@ namespace ConsoleApplicationCSharp
 {
     class Program
     {
-      /*  static RootGroupMembers parse(string json)
-        {
-            RootGroupMembers deserializedObject = JsonConvert.DeserializeObject<RootGroupMembers>(json);
-            return deserializedObject;
-        }*/
         static string get(string url)
         {
             var request = (HttpWebRequest)WebRequest.Create(url);
