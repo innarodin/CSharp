@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace ConsoleApplicationCSharp
 {
+    public class Comments
+    {
+        public int count { get; set; }
+    }
+
     public class Likes
+    {
+        public int count { get; set; }
+    }
+
+    public class Reposts
     {
         public int count { get; set; }
     }
@@ -19,11 +29,11 @@ namespace ConsoleApplicationCSharp
         public int date { get; set; }
         public string post_type { get; set; }
         public string text { get; set; }
-    /*    public List<CopyHistory> copy_history { get; set; }
-        public Comments comments { get; set; }*/
+    /*    public List<CopyHistory> copy_history { get; set; }*/
+        public Comments comments { get; set; }
         public Likes likes { get; set; }
-       /* public Reposts reposts { get; set; }
-        public List<Attachment2> attachments { get; set; }
+        public Reposts reposts { get; set; }
+       /* public List<Attachment2> attachments { get; set; }
         public Geo geo { get; set; }*/
     }
 

@@ -50,11 +50,32 @@ namespace ConsoleApplicationCSharp
                     foreach (var item in wall.response.items)
                     {
                         posts.Add(item); 
-                        Console.WriteLine(item.likes.count + " " + item.text);
                     }                
             }
-            //Sort();
-    
+
+            Console.WriteLine("Sort by:\n1.Likes\n2.Reposts\n3.Comments");
+            var tmp = Console.ReadLine();
+           
+            if(tmp == "1")
+                posts.Sort(delegate(Post post1, Post post2)
+                { 
+                    return post1.likes.count.CompareTo(post2.likes.count); 
+                });
+            else if (tmp == "2")
+                posts.Sort(delegate(Post post1, Post post2)
+                {
+                    return post1.reposts.count.CompareTo(post2.reposts.count);
+                });
+            else if (tmp == "3")
+                posts.Sort(delegate(Post post1, Post post2)
+                {
+                    return post1.comments.count.CompareTo(post2.comments.count);
+                });
+
+            foreach (var i in posts)
+            {
+                Console.WriteLine(i.likes.count + " " + i.reposts.count + " " + i.comments.count + " " + i.text);
+            }     
 
             Console.ReadLine();
  
