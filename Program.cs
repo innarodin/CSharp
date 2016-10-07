@@ -18,45 +18,16 @@ namespace ConsoleApplicationCSharp
             var response = (HttpWebResponse)request.GetResponse();
             var responseJson = new StreamReader(response.GetResponseStream()).ReadToEnd();
             return responseJson;
-        }
-
-         static string post(string url, string postData)
-        {
-            var request = (HttpWebRequest)WebRequest.Create(url);
-            var data = Encoding.ASCII.GetBytes(postData);
-
-            request.Method = "POST";
-            request.ContentType = "application/x-www-form-urlencoded";
-            request.ContentLength = data.Length;
-
-            using (var stream = request.GetRequestStream())
-            {
-                stream.Write(data, 0, data.Length);
-            }
-
-            var response = (HttpWebResponse)request.GetResponse();
-            var responseJson = new StreamReader(response.GetResponseStream()).ReadToEnd();
-            return responseJson;
-        }
-       
+        }         
 
         static void Main(string[] args)
         {
-            //получить id пользователей группы
+            //получить  пользователей группы
             string groupName = "csu_iit";
-            var url = "https://api.vk.com/method/groups.getMembers?v=5.52&group_id=" + groupName;
-            RootGroupMembers ids = JsonConvert.DeserializeObject<RootGroupMembers>(get(url));
+            var url = "https://api.vk.com/method/groups.getMembers?v=5.52&fields=1&group_id=" + groupName;
+            RootGroupMembers users = JsonConvert.DeserializeObject<RootGroupMembers>(get(url));
 
-            //получить имена пользователей
-            url = "https://api.vk.com/method/users.get";
-            var postData = "v=5.52&user_ids=";
-            foreach (var item in ids.response.items)
-            {
-                postData += item + ",";
-            }
-            RootUser users = JsonConvert.DeserializeObject<RootUser>(post(url, postData));
-
-            foreach (var user in users.response)
+            foreach (var user in users.response.items)
             {
                 Console.WriteLine(user.id + " " + user.first_name + " " + user.last_name);
             }
