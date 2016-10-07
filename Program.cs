@@ -69,6 +69,7 @@ namespace ConsoleApplicationCSharp
             RootFriend friends = JsonConvert.DeserializeObject<RootFriend>(get(url));
 
             //получить записи стены друзей пользователя
+            List<Post> posts = new List<Post>();
             foreach (var friend in friends.response.items)
             {
                 url = "https://api.vk.com/method/wall.get?v=5.52&owner_id=" + friend.id;
@@ -76,10 +77,13 @@ namespace ConsoleApplicationCSharp
 
                 if(wall.response != null)
                     foreach (var item in wall.response.items)
-                        Console.WriteLine(item.date + " " + item.text);
-
-                Console.WriteLine();
+                    {
+                        posts.Add(item); 
+                        Console.WriteLine(item.likes.count + " " + item.text);
+                    }                
             }
+            //Sort();
+    
 
             Console.ReadLine();
  
