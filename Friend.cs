@@ -8,20 +8,47 @@ namespace ConsoleApplicationCSharp
 {
     public class Friend
     {
-        public int id { get; set; }
-        public string first_name { get; set; }
-        public string last_name { get; set; }
-        public int hidden { get; set; }
+        private int id;
+        private string first_name;
+        private string last_name;
+        private int hidden;
+
+        public int GetId()
+        {
+            return this.id;
+        }
+        public string GetFirstName()
+        {
+            return this.first_name;
+        }
+        public string GetLastName()
+        {
+            return this.last_name;
+        }
     }
 
     public class FriendResponse
     {
-        public int count { get; set; }
-        public List<Friend> items { get; set; }
+        private int count;
+        private List<Friend> items;
+
+        public int GetCount()
+        {
+            return this.count;
+        }
+        public List<Friend> GetItems()
+        {
+            return items;
+        }
     }
 
     public class RootFriend
     {
-        public FriendResponse response { get; set; }
+        private FriendResponse response;
+
+        public FriendResponse GetResponse()
+        {
+            return response;
+        }
     }
 }

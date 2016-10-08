@@ -7,23 +7,49 @@ using System.Threading.Tasks;
 
 namespace ConsoleApplicationCSharp
 {
-    public class User
+    public class Member
     {
-        public int id { get; set; }
-        public string first_name { get; set; }
-        public string last_name { get; set; }
-        public int hidden { get; set; }
-        public string deactivated { get; set; }
+        private int id;
+        private string first_name;
+        private string last_name;
+        private int hidden;
+        private string deactivated;       
+        
+        public int GetId()
+        {
+            return this.id;
+        }
+        public string GetFirstName()
+        {
+            return this.first_name;
+        }
+        public string GetLastName()
+        {
+            return this.last_name;
+        }
     }
 
     public class GroupMembers
     {
-        public int count { get; set; }
-        public List<User> items { get; set; }
+        private int count;
+        private List<Member> items;
+
+        public int GetCount()
+        {
+            return this.count;
+        }
+        public List<Member> GetItems()
+        {
+            return items;
+        }
     }
 
     public class RootGroupMembers
     {
-        public GroupMembers response { get; set; }
+        private GroupMembers response;
+        public GroupMembers GetResponse()
+        {
+            return response;
+        }
     }
 }

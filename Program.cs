@@ -12,39 +12,37 @@ namespace ConsoleApplicationCSharp
 {
     class Program
     {
-        static string get(string url)
-        {
-            var request = (HttpWebRequest)WebRequest.Create(url);
-            var response = (HttpWebResponse)request.GetResponse();
-            var responseJson = new StreamReader(response.GetResponseStream()).ReadToEnd();
-            return responseJson;
-        }         
-
         static void Main(string[] args)
         {
             //получить  пользователей группы
-            string groupName = "csu_iit";
-            var url = "https://api.vk.com/method/groups.getMembers?v=5.52&fields=1&group_id=" + groupName;
-            RootGroupMembers users = JsonConvert.DeserializeObject<RootGroupMembers>(get(url));
+            VkApi vk = new VkApi();
+            var groupName = "csu_iit";
 
-            foreach (var user in users.response.items)
+            List<User> graphUsers = new List<User>();
+            foreach (var item in vk.GetGroupMembers(groupName).GetResponse().GetItems())
             {
-                Console.WriteLine(user.id + " " + user.first_name + " " + user.last_name);
+                User usr = new User
+                {
+                    user = item,
+                    friends = vk.GetFriends(item.GetId()).GetResponse().GetItems()
+                };
+                graphUsers.Add(usr);
+
+                //Console.WriteLine(user.id + " " + user.first_name + " " + user.last_name);
             }
 
             Console.WriteLine("Select user by id: ");
             var idUser = Console.ReadLine();
 
             //получить друзей пользователя
-            url = "https://api.vk.com/method/friends.get?v=5.52&fields=id,first_name,last_name&user_id=" + idUser;
-            RootFriend friends = JsonConvert.DeserializeObject<RootFriend>(get(url));
+           
 
             //получить записи стены друзей пользователя
-            List<Post> posts = new List<Post>();
+        /*    List<Post> posts = new List<Post>();
             foreach (var friend in friends.response.items)
             {
                 url = "https://api.vk.com/method/wall.get?v=5.52&owner_id=" + friend.id;
-                RootWall wall = JsonConvert.DeserializeObject<RootWall>(get(url));
+                RootWall wall = JsonConvert.DeserializeObject<RootWall>(Get(url));
 
                 if(wall.response != null)
                     foreach (var item in wall.response.items)
@@ -78,7 +76,7 @@ namespace ConsoleApplicationCSharp
             }     
 
             Console.ReadLine();
- 
+ */
         }
     }
 }
