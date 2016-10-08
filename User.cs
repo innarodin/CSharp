@@ -8,7 +8,24 @@ namespace ConsoleApplicationCSharp
 {
     class User
     {
-        public Member user;
-        public List<Friend> friends;
+        private Member user;
+        private List<Friend> friends;
+
+        public void SetUser(Member item)
+        {
+            user = item;
+        }
+        public Member GetUser()
+        {
+            return user;
+        }
+        public void SetFriends(List<Friend> items)
+        {
+            friends = items;
+        }
+        public List<Friend> GetFriends()
+        {
+            return friends;
+        }
     }
 }
