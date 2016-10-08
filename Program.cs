@@ -19,11 +19,12 @@ namespace ConsoleApplicationCSharp
             var groupName = "csu_iit";
 
             List<User> graphUsers = new List<User>();
-            foreach (var item in vk.GetGroupMembers(groupName).GetResponse().GetItems())
+           // List<Member> item = vk.GetGroupMembers(groupName).response.items;
+            foreach (var i in vk.GetGroupMembers(groupName))
             {
                 User usr = new User();
-                usr.SetUser(item);
-                usr.SetFriends(vk.GetFriends(item.GetId()).GetResponse().GetItems());
+                usr.SetUser(i);
+                usr.SetFriends(vk.GetFriends(i.id));
 
                 graphUsers.Add(usr);
 
@@ -34,7 +35,7 @@ namespace ConsoleApplicationCSharp
             var idUser = Console.ReadLine();
 
             //получить записи стены друзей пользователя
-            vk.GetPosts(idUser, graphUsers);
+           // vk.GetPosts(idUser, graphUsers);
             
           /*  Console.WriteLine("Sort by:\n1.Likes\n2.Reposts\n3.Comments");
             var tmp = Console.ReadLine();

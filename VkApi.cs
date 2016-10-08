@@ -19,18 +19,20 @@ namespace ConsoleApplicationCSharp
             return responseJson;
         }
 
-        public RootGroupMembers GetGroupMembers(string groupName)
+        public List<Member> GetGroupMembers(string groupName)
         {
             var url = "https://api.vk.com/method/groups.getMembers?v=5.52&fields=1&group_id=" + groupName;
             RootGroupMembers users = JsonConvert.DeserializeObject<RootGroupMembers>(Get(url));
-            return users;
+            return users.response.items;
         }
 
-        public RootFriend GetFriends(int idUser)
+        public List<Member> GetFriends(int idUser)
         {
             var url = "https://api.vk.com/method/friends.get?v=5.52&fields=id,first_name,last_name&user_id=" + idUser;
-            RootFriend friends = JsonConvert.DeserializeObject<RootFriend>(Get(url));
-            return friends;
+            RootGroupMembers friends = JsonConvert.DeserializeObject<RootGroupMembers>(Get(url));
+            if (friends.response == null)
+                return null;
+            return friends.response.items;
         }
 
         public RootWall GetPosts(string idUser, List<User> graphUsers)
@@ -49,7 +51,8 @@ namespace ConsoleApplicationCSharp
                     {
                         posts.Add(item);
                     }
-            }
-        }*/
+            }*/
+            return null;
+        }
     }
 }

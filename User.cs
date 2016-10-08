@@ -9,7 +9,7 @@ namespace ConsoleApplicationCSharp
     class User
     {
         private Member user;
-        private List<Friend> friends;
+        private List<Member> friends;
 
         public void SetUser(Member item)
         {
@@ -19,11 +19,11 @@ namespace ConsoleApplicationCSharp
         {
             return user;
         }
-        public void SetFriends(List<Friend> items)
+        public void SetFriends(List<Member> items)
         {
             friends = items;
         }
-        public List<Friend> GetFriends()
+        public List<Member> GetFriends()
         {
             return friends;
         }

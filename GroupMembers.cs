@@ -9,47 +9,23 @@ namespace ConsoleApplicationCSharp
 {
     public class Member
     {
-        private int id;
-        private string first_name;
-        private string last_name;
-        private int hidden;
-        private string deactivated;       
+        public int id { get; set; }
+        public string first_name { get; set; }
+        public string last_name { get; set; }
+        public int hidden { get; set; }
+        public string deactivated { get; set; }   
         
-        public int GetId()
-        {
-            return this.id;
-        }
-        public string GetFirstName()
-        {
-            return this.first_name;
-        }
-        public string GetLastName()
-        {
-            return this.last_name;
-        }
     }
 
     public class GroupMembers
     {
-        private int count;
-        private List<Member> items;
-
-        public int GetCount()
-        {
-            return this.count;
-        }
-        public List<Member> GetItems()
-        {
-            return items;
-        }
+        public int count { get; set; }
+        public List<Member> items { get; set; }
     }
 
     public class RootGroupMembers
     {
-        private GroupMembers response;
-        public GroupMembers GetResponse()
-        {
-            return response;
-        }
+        public GroupMembers response { get; set; }
+       
     }
 }
