@@ -14,18 +14,17 @@ namespace ConsoleApplicationCSharp
     {
         static void Main(string[] args)
         {
-            //получить  пользователей группы
+            //получить граф для пользователей группы
             VkApi vk = new VkApi();
             var groupName = "csu_iit";
 
             List<User> graphUsers = new List<User>();
             foreach (var item in vk.GetGroupMembers(groupName).GetResponse().GetItems())
             {
-                User usr = new User
-                {
-                    user = item,
-                    friends = vk.GetFriends(item.GetId()).GetResponse().GetItems()
-                };
+                User usr = new User();
+                usr.SetUser(item);
+                usr.SetFriends(vk.GetFriends(item.GetId()).GetResponse().GetItems());
+
                 graphUsers.Add(usr);
 
                 //Console.WriteLine(user.id + " " + user.first_name + " " + user.last_name);
@@ -33,9 +32,6 @@ namespace ConsoleApplicationCSharp
 
             Console.WriteLine("Select user by id: ");
             var idUser = Console.ReadLine();
-
-            //получить друзей пользователя
-           
 
             //получить записи стены друзей пользователя
         /*    List<Post> posts = new List<Post>();
