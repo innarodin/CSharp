@@ -32,5 +32,24 @@ namespace ConsoleApplicationCSharp
             RootFriend friends = JsonConvert.DeserializeObject<RootFriend>(Get(url));
             return friends;
         }
+
+        public RootWall GetPosts(string idUser, List<User> graphUsers)
+        {
+            List<Post> posts = new List<Post>();
+            User user = new User();
+
+            
+           /* foreach (var friend in )
+            {
+                url = "https://api.vk.com/method/wall.get?v=5.52&owner_id=" + friend.id;
+                RootWall wall = JsonConvert.DeserializeObject<RootWall>(Get(url));
+
+                if (wall.response != null)
+                    foreach (var item in wall.response.items)
+                    {
+                        posts.Add(item);
+                    }
+            }
+        }*/
     }
 }

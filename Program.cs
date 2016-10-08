@@ -34,20 +34,9 @@ namespace ConsoleApplicationCSharp
             var idUser = Console.ReadLine();
 
             //получить записи стены друзей пользователя
-        /*    List<Post> posts = new List<Post>();
-            foreach (var friend in friends.response.items)
-            {
-                url = "https://api.vk.com/method/wall.get?v=5.52&owner_id=" + friend.id;
-                RootWall wall = JsonConvert.DeserializeObject<RootWall>(Get(url));
-
-                if(wall.response != null)
-                    foreach (var item in wall.response.items)
-                    {
-                        posts.Add(item); 
-                    }                
-            }
-
-            Console.WriteLine("Sort by:\n1.Likes\n2.Reposts\n3.Comments");
+            vk.GetPosts(idUser, graphUsers);
+            
+          /*  Console.WriteLine("Sort by:\n1.Likes\n2.Reposts\n3.Comments");
             var tmp = Console.ReadLine();
            
             if(tmp == "1")
