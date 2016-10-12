@@ -19,11 +19,10 @@ namespace ConsoleApplicationCSharp
             var groupName = "csu_iit";
 
             List<User> graphUsers = new List<User>();
-           // List<Member> item = vk.GetGroupMembers(groupName).response.items;
+
             foreach (var i in vk.GetGroupMembers(groupName))
             {
-                User usr = new User();
-                usr.SetUser(i);
+                User usr = new User(i.id,i.first_name,i.last_name);
                 usr.SetFriends(vk.GetFriends(i.id));
 
                 graphUsers.Add(usr);
@@ -31,30 +30,24 @@ namespace ConsoleApplicationCSharp
                 //Console.WriteLine(user.id + " " + user.first_name + " " + user.last_name);
             }
 
+            foreach (var i in graphUsers)
+            {
+                Console.WriteLine(i.GetId() + " " + i.GetFirstName() + " " + i.GetLastName());
+            }    
+
             Console.WriteLine("Select user by id: ");
             var idUser = Console.ReadLine();
 
             //получить записи стены друзей пользователя
-           // vk.GetPosts(idUser, graphUsers);
-            
-          /*  Console.WriteLine("Sort by:\n1.Likes\n2.Reposts\n3.Comments");
+            List<Post> posts = vk.GetPosts(idUser, graphUsers);
+          
+            Console.WriteLine("Sort by:\n1.Likes\n2.Reposts\n3.Comments");
             var tmp = Console.ReadLine();
-           
-            if(tmp == "1")
-                posts.Sort(delegate(Post post1, Post post2)
-                { 
-                    return post1.likes.count.CompareTo(post2.likes.count); 
-                });
-            else if (tmp == "2")
-                posts.Sort(delegate(Post post1, Post post2)
-                {
-                    return post1.reposts.count.CompareTo(post2.reposts.count);
-                });
-            else if (tmp == "3")
-                posts.Sort(delegate(Post post1, Post post2)
-                {
-                    return post1.comments.count.CompareTo(post2.comments.count);
-                });
+
+            Sorter sorter = new Sorter();
+            if (tmp == "1") sorter.SortByLikes(ref posts);
+            else if (tmp == "2") sorter.SortByReposts(ref posts);
+            else if (tmp == "3") sorter.SortByComments(ref posts);
 
             foreach (var i in posts)
             {
@@ -62,7 +55,7 @@ namespace ConsoleApplicationCSharp
             }     
 
             Console.ReadLine();
- */
+ 
         }
     }
 }

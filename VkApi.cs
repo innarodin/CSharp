@@ -19,14 +19,14 @@ namespace ConsoleApplicationCSharp
             return responseJson;
         }
 
-        public List<Member> GetGroupMembers(string groupName)
+        public List<VKMember> GetGroupMembers(string groupName)
         {
             var url = "https://api.vk.com/method/groups.getMembers?v=5.52&fields=1&group_id=" + groupName;
             RootGroupMembers users = JsonConvert.DeserializeObject<RootGroupMembers>(Get(url));
             return users.response.items;
         }
 
-        public List<Member> GetFriends(int idUser)
+        public List<VKMember> GetFriends(string idUser)
         {
             var url = "https://api.vk.com/method/friends.get?v=5.52&fields=id,first_name,last_name&user_id=" + idUser;
             RootGroupMembers friends = JsonConvert.DeserializeObject<RootGroupMembers>(Get(url));
@@ -35,24 +35,20 @@ namespace ConsoleApplicationCSharp
             return friends.response.items;
         }
 
-        public RootWall GetPosts(string idUser, List<User> graphUsers)
+        public List<Post> GetPosts(string uid, List<User> graphUsers)
         {
             List<Post> posts = new List<Post>();
-            User user = new User();
-
+            User user = graphUsers.Find(x => x.GetId() == uid);
             
-           /* foreach (var friend in )
+            foreach (var friend in user.GetFriends())
             {
-                url = "https://api.vk.com/method/wall.get?v=5.52&owner_id=" + friend.id;
+                var url = "https://api.vk.com/method/wall.get?v=5.52&owner_id=" + friend.id;
                 RootWall wall = JsonConvert.DeserializeObject<RootWall>(Get(url));
 
                 if (wall.response != null)
-                    foreach (var item in wall.response.items)
-                    {
-                        posts.Add(item);
-                    }
-            }*/
-            return null;
+                    posts.AddRange(wall.response.items);
+            }
+            return posts;
         }
     }
 }

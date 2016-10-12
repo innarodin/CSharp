@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,12 +30,9 @@ namespace ConsoleApplicationCSharp
         public int date { get; set; }
         public string post_type { get; set; }
         public string text { get; set; }
-    /*    public List<CopyHistory> copy_history { get; set; }*/
         public Comments comments { get; set; }
         public Likes likes { get; set; }
         public Reposts reposts { get; set; }
-       /* public List<Attachment2> attachments { get; set; }
-        public Geo geo { get; set; }*/
     }
 
     public class Wall

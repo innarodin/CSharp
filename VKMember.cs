@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ConsoleApplicationCSharp
 {
-    public class Member
+    public class VKMember
     {
-        public int id { get; set; }
+        public string id { get; set; }
         public string first_name { get; set; }
         public string last_name { get; set; }
         public int hidden { get; set; }
@@ -20,7 +20,7 @@ namespace ConsoleApplicationCSharp
     public class GroupMembers
     {
         public int count { get; set; }
-        public List<Member> items { get; set; }
+        public List<VKMember> items { get; set; }
     }
 
     public class RootGroupMembers
