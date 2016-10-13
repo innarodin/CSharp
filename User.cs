@@ -11,7 +11,7 @@ namespace ConsoleApplicationCSharp
         private string id;
         private string firstname;
         private string lastname;
-        private List<VKMember> friends;
+        private List<User> friends;
 
         public User(string uid, string name, string lname)
         {
@@ -50,11 +50,11 @@ namespace ConsoleApplicationCSharp
             return lastname;
         }
 
-        public void SetFriends(List<VKMember> items)
+        public void SetFriends(List<User> items)
         {
             friends = items;
         }
-        public List<VKMember> GetFriends()
+        public List<User> GetFriends()
         {
             return friends;
         }
