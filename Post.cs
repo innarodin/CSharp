@@ -21,9 +21,9 @@ namespace ConsoleApplicationCSharp
             set { fromId = value; } 
         }
         
-        public int owner_id { get; set; }
+        public int ownerId { get; set; }
         public int date { get; set; }
-        public string post_type { get; set; }
+        public string postType { get; set; }
         public string text { get; set; }
         public Comments comments { get; set; }
         public Likes likes { get; set; }

@@ -15,7 +15,7 @@ namespace ConsoleApplicationCSharp
                 Id = wallItem.id,
                 FromId = wallItem.from_id,
                 date = wallItem.date,
-                post_type = wallItem.post_type,
+                postType = wallItem.post_type,
                 text = wallItem.text,
                 comments = wallItem.comments,
                 likes = wallItem.likes,
