@@ -8,22 +8,22 @@ namespace ConsoleApplicationCSharp
 {
     class Sorter
     {
-        public void SortByLikes(ref List<Post> posts)
+        public List<Post> SortByLikes(List<Post> posts)
         {
             posts.Sort((post1, post2) => post1.likes.count.CompareTo(post2.likes.count));
-            //return posts;
+            return posts;
         }
 
-        public void SortByReposts(ref List<Post> posts)
+        public List<Post> SortByReposts(List<Post> posts)
         {
             posts.Sort((post1, post2) => post1.reposts.count.CompareTo(post2.reposts.count));
-           // return posts;
+            return posts;
         }
 
-        public void SortByComments(ref List<Post> posts)
+        public List<Post> SortByComments(List<Post> posts)
         {
             posts.Sort((post1, post2) => post1.comments.count.CompareTo(post2.comments.count));
-            //return posts;
+            return posts;
         }
     }
 }

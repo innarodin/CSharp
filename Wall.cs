@@ -22,7 +22,7 @@ namespace ConsoleApplicationCSharp
         public int count { get; set; }
     }
 
-    public class Post
+    public class WallItem
     {
         public int id { get; set; }
         public int from_id { get; set; }
@@ -38,7 +38,7 @@ namespace ConsoleApplicationCSharp
     public class Wall
     {
         public int count { get; set; }
-        public List<Post> items { get; set; }
+        public List<WallItem> items { get; set; }
     }
 
     public class RootWall
